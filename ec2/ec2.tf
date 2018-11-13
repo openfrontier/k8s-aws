@@ -7,6 +7,12 @@ resource "aws_instance" "demo01" {
   subnet_id              = "${aws_subnet.demo01.id}"
   vpc_security_group_ids = ["${aws_vpc.demo01.default_security_group_id}", "${aws_security_group.demo01.id}"]
 
+  root_block_device {
+    volume_type = "${var.root_volume_type}"
+    volume_size = "${var.root_volume_size}"
+    delete_on_termination = true
+  }
+
   tags {
     Name = "demo01-${count.index}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"

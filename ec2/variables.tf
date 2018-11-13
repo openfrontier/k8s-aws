@@ -27,3 +27,9 @@ variable "ec2_instance_count" {
   default = 3
 }
 variable "os_type" {}
+variable "root_volume_type" {
+  default = "gp2"
+}
+variable "root_volume_size" {
+  default = "8"
+}

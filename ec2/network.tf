@@ -80,13 +80,14 @@ resource "aws_subnet" "demo01" {
 }
 
 resource "aws_eip" "demo01" {
-  instance = "${aws_instance.demo01.id}"
+  count    = "${var.ec2-instance-count}"
+  instance = "${element(aws_instance.demo01.*.id, count.index)}"
   vpc      = true
 
   depends_on = ["aws_internet_gateway.demo01"]
 
   tags {
-    Name = "demo01"
+    Name = "demo01-${count.index}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }

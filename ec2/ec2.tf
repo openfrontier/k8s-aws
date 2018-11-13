@@ -1,4 +1,5 @@
 resource "aws_instance" "demo01" {
+  count           = "${var.ec2-instance-count}"
   ami             = "${var.ami_id}"
   instance_type   = "${var.instance_type}"
   key_name        = "${var.ssh_key_name}"
@@ -7,7 +8,7 @@ resource "aws_instance" "demo01" {
   vpc_security_group_ids = ["${aws_vpc.demo01.default_security_group_id}", "${aws_security_group.demo01.id}"]
 
   tags {
-    Name = "demo01"
+    Name = "demo01-${count.index}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 

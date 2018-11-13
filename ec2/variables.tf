@@ -13,3 +13,6 @@ variable "instance_type" {
 variable "vpc_cidr_block" {}
 variable "sg_inbound_ip_ssh" {}
 variable "sg_inbound_ip_tf" {}
+variable "ec2-instance-count" {
+  default = 3
+}

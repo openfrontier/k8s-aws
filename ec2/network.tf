@@ -13,6 +13,7 @@ resource "aws_security_group" "demo01" {
   description = "Allow ssh inbound traffic"
   vpc_id      = "${aws_vpc.demo01.id}"
 
+  # terraform ssh provisioners
   ingress {
     from_port   = 22
     to_port     = 22
@@ -20,11 +21,20 @@ resource "aws_security_group" "demo01" {
     cidr_blocks = ["${var.sg_inbound_ip_tf}"]
   }
 
+  # ssh access from operators ip
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.sg_inbound_ip_ssh}"]
+  }
+
+  # outbound internet access
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags {

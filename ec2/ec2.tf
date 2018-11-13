@@ -1,6 +1,6 @@
 resource "aws_instance" "demo01" {
-  count           = "${var.ec2-instance-count}"
-  ami             = "${var.ami_id}"
+  count           = "${var.ec2_instance_count}"
+  ami             = "${lookup(var.ami_ids, var.os_type)}"
   instance_type   = "${var.instance_type}"
   key_name        = "${var.ssh_key_name}"
 
@@ -17,13 +17,13 @@ resource "aws_instance" "demo01" {
       "sleep 10",
       "curl https://releases.rancher.com/install-docker/17.09.sh | sed s/17.09.0/17.09.1/g | sh",
       "sleep 10",
-      "sudo usermod -aG docker ${var.ssh_user}"
+      "sudo usermod -aG docker ${lookup(var.ssh_users, var.os_type)}"
     ]
     on_failure = "fail"
 
     connection {
       type        = "ssh"
-      user        = "${var.ssh_user}"
+      user        = "${lookup(var.ssh_users, var.os_type)}"
       private_key = "${file("${var.ssh_key_path}")}"
       timeout     = "10m"
     }

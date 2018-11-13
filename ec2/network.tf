@@ -80,7 +80,7 @@ resource "aws_subnet" "demo01" {
 }
 
 resource "aws_eip" "demo01" {
-  count    = "${var.ec2-instance-count}"
+  count    = "${var.ec2_instance_count}"
   instance = "${element(aws_instance.demo01.*.id, count.index)}"
   vpc      = true
 

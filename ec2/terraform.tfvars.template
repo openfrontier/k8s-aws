@@ -1,10 +1,18 @@
+# Check your access key and secret key in IAM
 aws_access_key = ""
 aws_secret_key = ""
+# AWS region e.g. "us-west-1" or "ap-northeast-1"
 aws_region = ""
+# AWS key pairs
 ssh_key_name = ""
+# Path to the key pairs private credential file
 ssh_key_path = ""
+# VPC's cidr e.g. "172.16.0.0/16:
 vpc_cidr_block = ""
+# Security group inbound ips for ssh and terraform connection
 sg_inbound_ip_ssh = ""
 sg_inbound_ip_tf = ""
+# "ubuntu" or "centos"
 os_type = ""
+# root volume size in gigabyes. e.g. "10"
 root_volume_size = ""

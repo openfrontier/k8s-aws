@@ -7,7 +7,7 @@ aws_region = ""
 ssh_key_name = ""
 # Path to the key pairs private credential file
 ssh_key_path = ""
-# VPC's cidr e.g. "172.16.0.0/16:
+# VPC's cidr e.g. "172.16.0.0/12:
 vpc_cidr_block = ""
 # Security group inbound ips for ssh and terraform connection
 sg_inbound_ip_ssh = ""

@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "ec2-elb-policy" {
 
 resource "aws_iam_policy" "rancher" {
   description = "Allows Rancher instances to call EC2 services on your behalf"
-  name   = "RancherK8SEC2"
+  name   = "${var.cluster_name}RancherK8SEC2"
   policy = "${data.aws_iam_policy_document.ec2-elb-policy.json}"
 }
 
@@ -34,7 +34,7 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
 }
 
 resource "aws_iam_role" "rancher" {
-  name               = "RancherK8SRole"
+  name               = "${var.cluster_name}RancherK8SRole"
   assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}"
   description        = "Allows Rancher instances to call EC2 services on your behalf"
 }

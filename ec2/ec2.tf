@@ -14,7 +14,7 @@ resource "aws_instance" "demo01" {
   }
 
   tags {
-    Name = "demo01-${count.index}"
+    Name = "${var.cluster_name}-${count.index}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 

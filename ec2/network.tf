@@ -3,7 +3,7 @@ resource "aws_vpc" "demo01" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "demo01"
+    Name = "${var.cluster_name}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }
@@ -38,7 +38,7 @@ resource "aws_security_group" "demo01" {
   }
 
   tags {
-    Name = "demo01"
+    Name = "${var.cluster_name}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }
@@ -47,7 +47,7 @@ resource "aws_internet_gateway" "demo01" {
   vpc_id = "${aws_vpc.demo01.id}"
 
   tags {
-    Name = "demo01"
+    Name = "${var.cluster_name}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }
@@ -61,7 +61,7 @@ resource "aws_default_route_table" "demo01" {
   }
 
   tags {
-    Name = "demo01"
+    Name = "${var.cluster_name}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }
@@ -74,7 +74,7 @@ resource "aws_subnet" "demo01" {
   depends_on = ["aws_internet_gateway.demo01"]
 
   tags {
-    Name = "demo01"
+    Name = "${var.cluster_name}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }
@@ -87,7 +87,7 @@ resource "aws_eip" "demo01" {
   depends_on = ["aws_internet_gateway.demo01"]
 
   tags {
-    Name = "demo01-${count.index}"
+    Name = "${var.cluster_name}-${count.index}"
     "kubernetes.io/cluster/aws.devops.demo" = "owned"
   }
 }

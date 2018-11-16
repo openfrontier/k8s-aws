@@ -86,12 +86,20 @@ resource "aws_subnet" "demo01" {
   }
 }
 
+resource "aws_eip" "rancherserver" {
+  instance = "${aws_instance.rancherserver.id}"
+  vpc      = true
+
+  tags {
+    Name = "${var.cluster_name}-rancher"
+    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+  }
+}
+
 resource "aws_eip" "demo01" {
   count    = "${var.ec2_instance_count}"
   instance = "${element(aws_instance.demo01.*.id, count.index)}"
   vpc      = true
-
-  depends_on = ["aws_internet_gateway.demo01"]
 
   tags {
     Name = "${var.cluster_name}-${count.index}"

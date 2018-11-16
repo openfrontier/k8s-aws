@@ -10,3 +10,6 @@ output "rancher_agent_join_url" {
 output "rancher_agent_join_token" {
   value = "${rancher_registration_token.demo01.token}"
 }
+output "rancher_agent_image" {
+  value = "${rancher_registration_token.demo01.image}"
+}

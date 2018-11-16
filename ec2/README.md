@@ -10,7 +10,8 @@ terraform apply
 ```
 
 A new vpc with according sub-network, security-group, route-table, etc are created.
-New ec2 instances will be created into this vpc with appropriated settings.
+A New ec2 instances will be created into this vpc with appropriated settings.
+A Rancher server will be started on the ec2 instance.
 
 ## Destroy everything created above
 

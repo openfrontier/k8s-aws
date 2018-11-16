@@ -29,6 +29,14 @@ resource "aws_security_group" "demo01" {
     cidr_blocks = ["${var.sg_inbound_ip_ssh}"]
   }
 
+  # access from same sg
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self        = "true"
+  }
+
   # outbound internet access
   egress {
     from_port   = 0

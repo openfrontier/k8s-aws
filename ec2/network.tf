@@ -15,18 +15,17 @@ resource "aws_security_group" "demo01" {
 
   # terraform ssh provisioners
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = "22"
+    to_port     = "22"
     protocol    = "tcp"
-    cidr_blocks = ["${var.sg_inbound_ip_tf}"]
+    cidr_blocks = ["${var.sg_inbound_ip_tf}", "${var.sg_inbound_ip_ssh}"]
   }
 
-  # ssh access from operators ip
-  ingress {
-    from_port   = 22
-    to_port     = 22
+    ingress {
+    from_port   = "8080"
+    to_port     = "8080"
     protocol    = "tcp"
-    cidr_blocks = ["${var.sg_inbound_ip_ssh}"]
+    cidr_blocks = ["${var.sg_inbound_ip_tf}", "${var.sg_inbound_ip_ssh}"]
   }
 
   # access from same sg

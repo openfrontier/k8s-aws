@@ -21,14 +21,15 @@ resource "aws_security_group" "demo01" {
     cidr_blocks = ["${var.sg_inbound_ip_tf}", "${var.sg_inbound_ip_ssh}"]
   }
 
-    ingress {
+  # rancher port
+  ingress {
     from_port   = "8080"
     to_port     = "8080"
     protocol    = "tcp"
     cidr_blocks = ["${var.sg_inbound_ip_tf}", "${var.sg_inbound_ip_ssh}"]
   }
 
-  # access from same sg
+  # access from same vpc
   ingress {
     from_port   = 0
     to_port     = 0

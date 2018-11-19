@@ -20,7 +20,7 @@ resource "aws_instance" "rancherserver" {
   provisioner "remote-exec" {
     inline = [
       "sleep 30",
-      "curl https://releases.rancher.com/install-docker/17.09.sh | sed s/17.09.0/17.09.1/g | sh",
+      "curl -s https://releases.rancher.com/install-docker/17.09.sh | sed s/17.09.0/17.09.1/g | sh",
       "sleep 10",
       "sudo usermod -aG docker ${lookup(var.ssh_users, var.os_type)}",
       "sleep 1"

@@ -19,28 +19,6 @@ resource "aws_security_group" "demo01" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # kubernetes port
-  ingress {
-    from_port   = "10250"
-    to_port     = "10255"
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  # ipsec ports
-  ingress {
-    from_port   = "500"
-    to_port     = "500"
-    protocol    = "udp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port   = "4500"
-    to_port     = "4500"
-    protocol    = "udp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   # access from same vpc
   ingress {
     from_port   = 0

@@ -21,5 +21,6 @@ resource "rancher_registration_token" "demo01" {
     orchestration = "true",
     etcd          = "true",
     compute       = "true"
+    tier          = "ingress"
   }
 }

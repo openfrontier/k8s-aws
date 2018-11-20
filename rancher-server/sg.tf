@@ -19,6 +19,14 @@ resource "aws_security_group" "demo01" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # http port
+  ingress {
+    from_port   = "80"
+    to_port     = "80"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # access from same vpc
   ingress {
     from_port   = 0

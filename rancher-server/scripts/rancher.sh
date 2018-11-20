@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 set -e
 
-export curlimage=appropriate/curl
 export jqimage=stedolan/jq
 
 echo "---> MySQL"
@@ -22,7 +21,7 @@ docker run \
 echo "---> Waiting for database connection  ..."
 docker run -it \
 --link rancher-mysql:mysql \
---rm ${curlimage} \
+--rm alpine \
 sh -c 'until nc -z mysql 3306 ; do  sleep 1 ; done'
 
 echo "---> Rancher"
@@ -40,24 +39,26 @@ docker run \
 --db-name cattle
 
 echo "--> Waiting for rancher service ..."
-RANCHER_API_HOST=$(\
 docker run -it \
 --link rancher-server:rancher \
---rm ${curlimage} \
-sh -c 'until nc -z rancher 8080 ; do  sleep 1 ; done && curl http://rancher:8080/v2-beta/settings/api.host' | \
+--rm alpine \
+sh -c 'until nc -z rancher 8080 ; do  sleep 1 ; done'
+
+echo "--> Getting api.host settings ..."
+RANCHER_API_HOST=$(\
+curl -s http://localhost:8080/v2-beta/settings/api.host | \
 docker run --rm -i ${jqimage} '.' \
 )
-
 echo "${RANCHER_API_HOST}"
 
+echo "--> Updating  host registration URL ..."
 rancher_private_ip="$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)"
-RANCHER_HOST="$(\
+RANCHER_HOST=$(\
 echo "${RANCHER_API_HOST}" | \
 docker run --rm -i ${jqimage} '. | {value: .value}' | \
 sed "s/null/\"http:\/\/${rancher_private_ip}:8080\"/g" \
-)"
+)
 echo ${RANCHER_HOST}
-echo "--> Updating  host registration URL ..."
 curl -X PUT \
 -H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
@@ -65,6 +66,6 @@ curl -X PUT \
 'http://localhost:8080/v2-beta/settings/api.host'
 
 echo "--> clean up"
-docker rmi ${curlimage} ${jqimage}
+docker rmi alpine ${jqimage}
 
 echo "--> Done"

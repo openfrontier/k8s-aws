@@ -7,7 +7,7 @@ aws_region = ""
 ssh_key_name = ""
 # Path to the key pairs private credential file
 ssh_key_path = ""
-# VPC's cidr e.g. "172.16.0.0/12:
+# VPC's cidr e.g. "172.20.0.0/16"
 vpc_cidr_block = ""
 # Security group inbound ips for ssh and terraform connection
 sg_inbound_ip_ssh = ""
@@ -16,5 +16,5 @@ sg_inbound_ip_tf = ""
 os_type = ""
 # root volume size in gigabyes. e.g. "10"
 root_volume_size = ""
-# ec2 instance type. e.g. "t2.micro"
+# ec2 instance type. e.g. "t3.small"
 instance_type = ""

@@ -11,7 +11,10 @@ ssh_key_path = ""
 os_type = ""
 # root volume size in gigabyes. e.g. "10"
 root_volume_size = ""
-# working nodes number
+# k8s stack nodes number
 ec2_instance_count = ""
+# computing nodes number
+ec2_compute_count = ""
 # ec2 instance type. e.g. "t3.small"
 instance_type = ""
+compute_instance_type = ""

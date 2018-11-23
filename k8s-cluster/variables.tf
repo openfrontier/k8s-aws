@@ -23,8 +23,14 @@ variable "ssh_key_path" {}
 variable "instance_type" {
   default = "t2.micro"
 }
+variable "compute_instance_type" {
+  default = "t2.micro"
+}
 variable "ec2_instance_count" {
   default = 3
+}
+variable "ec2_compute_count" {
+  default = 0
 }
 variable "os_type" {}
 variable "root_volume_type" {

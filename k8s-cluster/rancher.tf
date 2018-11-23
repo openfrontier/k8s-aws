@@ -13,13 +13,21 @@ resource "rancher_environment" "demo01" {
   orchestration = "kubernetes"
 }
 
-resource "rancher_registration_token" "demo01" {
-  name = "k8s_demo_token"
+resource "rancher_registration_token" "plane" {
+  name = "k8s_plane_token"
   environment_id = "${rancher_environment.demo01.id}"
 
   host_labels {
     orchestration = "true",
     etcd          = "true",
+  }
+}
+
+resource "rancher_registration_token" "compute" {
+  name = "k8s_compute_token"
+  environment_id = "${rancher_environment.demo01.id}"
+
+  host_labels {
     compute       = "true"
     tier          = "ingress"
   }

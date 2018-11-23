@@ -10,7 +10,7 @@ provider "rancher" {
 
 resource "rancher_environment" "demo01" {
   name = "k8s.demo"
-  orchestration = "kubernetes"
+  project_template_id = "${var.rancher_template_id}"
 }
 
 resource "rancher_registration_token" "plane" {

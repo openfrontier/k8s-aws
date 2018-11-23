@@ -18,3 +18,5 @@ ec2_compute_count = ""
 # ec2 instance type. e.g. "t3.small"
 instance_type = ""
 compute_instance_type = ""
+# rancher environment template id
+rancher_template_id = ""

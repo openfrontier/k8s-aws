@@ -39,3 +39,4 @@ variable "root_volume_type" {
 variable "root_volume_size" {
   default = "8"
 }
+variable "rancher_template_id" {}

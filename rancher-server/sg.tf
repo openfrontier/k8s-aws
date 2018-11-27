@@ -45,6 +45,6 @@ resource "aws_security_group" "demo01" {
 
   tags {
     Name = "${var.cluster_name}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }

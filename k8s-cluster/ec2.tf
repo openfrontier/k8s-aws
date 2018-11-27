@@ -52,7 +52,7 @@ resource "aws_instance" "k8s" {
 
   tags {
     Name = "${var.cluster_name}-${count.index}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 
   provisioner "remote-exec" {
@@ -82,7 +82,7 @@ resource "aws_eip" "demo01" {
 
   tags {
     Name = "${var.cluster_name}-${count.index}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }
 
@@ -106,7 +106,7 @@ resource "aws_instance" "compute" {
 
   tags {
     Name = "${var.cluster_name}-compute-${count.index}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 
   provisioner "remote-exec" {
@@ -136,6 +136,6 @@ resource "aws_eip" "compute" {
 
   tags {
     Name = "${var.cluster_name}-compute-${count.index}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }

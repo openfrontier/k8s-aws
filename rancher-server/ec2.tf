@@ -14,7 +14,7 @@ resource "aws_instance" "rancherserver" {
 
   tags {
     Name = "${var.cluster_name}-rancher"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 
   provisioner "remote-exec" {

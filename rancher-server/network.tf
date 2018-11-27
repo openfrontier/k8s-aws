@@ -4,7 +4,7 @@ resource "aws_vpc" "demo01" {
 
   tags {
     Name = "${var.cluster_name}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_internet_gateway" "demo01" {
 
   tags {
     Name = "${var.cluster_name}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }
 
@@ -27,7 +27,7 @@ resource "aws_default_route_table" "demo01" {
 
   tags {
     Name = "${var.cluster_name}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_subnet" "demo01" {
 
   tags {
     Name = "${var.cluster_name}"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }
 
@@ -50,6 +50,6 @@ resource "aws_eip" "rancherserver" {
 
   tags {
     Name = "${var.cluster_name}-rancher"
-    "kubernetes.io/cluster/aws.devops.demo" = "owned"
+    "kubernetes.io/cluster/k8s" = "owned"
   }
 }

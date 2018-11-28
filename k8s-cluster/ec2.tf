@@ -41,6 +41,7 @@ resource "aws_instance" "k8s" {
 
   subnet_id              = "${data.aws_subnet.demo01.id}"
   vpc_security_group_ids = ["${data.aws_security_group.demo01.id}"]
+  iam_instance_profile   = "${aws_iam_instance_profile.demo01.id}"
 
   root_block_device {
     volume_type = "${var.root_volume_type}"
@@ -95,6 +96,7 @@ resource "aws_instance" "compute" {
 
   subnet_id              = "${data.aws_subnet.demo01.id}"
   vpc_security_group_ids = ["${data.aws_security_group.demo01.id}"]
+  iam_instance_profile   = "${aws_iam_instance_profile.demo01.id}"
 
   root_block_device {
     volume_type = "${var.root_volume_type}"

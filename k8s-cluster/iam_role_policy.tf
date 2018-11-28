@@ -43,3 +43,8 @@ resource "aws_iam_role_policy_attachment" "rancher-role-attach" {
   role       = "${aws_iam_role.rancher.name}"
   policy_arn = "${aws_iam_policy.rancher.arn}"
 }
+
+resource "aws_iam_instance_profile" "demo01" {
+  name = "rancher_k8s_profile"
+  role = "${aws_iam_role.rancher.name}"
+}

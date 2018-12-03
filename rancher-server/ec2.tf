@@ -1,5 +1,5 @@
 resource "aws_instance" "rancherserver" {
-  ami             = "${lookup(var.ami_ids, var.os_type)}"
+  ami             = "${local.ostype_amis[var.os_type]}"
   instance_type   = "${var.instance_type}"
   key_name        = "${var.ssh_key_name}"
 

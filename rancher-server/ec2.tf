@@ -3,8 +3,8 @@ resource "aws_instance" "rancherserver" {
   instance_type   = "${var.instance_type}"
   key_name        = "${var.ssh_key_name}"
 
-  subnet_id              = "${aws_subnet.demo01.id}"
-  vpc_security_group_ids = ["${aws_security_group.demo01.id}"]
+  subnet_id       = "${module.vpc.default_vpc_id}"
+  vpc_security_group_ids = ["${module.rancher_service_sg.this_security_group_id}"]
 
   root_block_device {
     volume_type = "${var.root_volume_type}"

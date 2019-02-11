@@ -6,12 +6,6 @@ variable "aws_secret_key" {}
 variable "aws_region" {
   default = "ap-northeast-2"
 }
-variable "ami_ids" {
-  default = {
-    "centos" = "ami-bf9c36d1"
-    "ubuntu" = "ami-013dda6d4ad165475"
-  }
-}
 variable "ssh_users" {
   default = {
     "centos" = "centos"

@@ -35,7 +35,7 @@ data "template_cloudinit_config" "demo01" {
 resource "aws_instance" "k8s" {
   depends_on      = ["rancher_registration_token.plane"]
   count           = "${var.ec2_instance_count}"
-  ami             = "${lookup(var.ami_ids, var.os_type)}"
+  ami             = "${local.ostype_amis[var.os_type]}"
   instance_type   = "${var.instance_type}"
   key_name        = "${var.ssh_key_name}"
 
@@ -90,7 +90,7 @@ resource "aws_eip" "demo01" {
 resource "aws_instance" "compute" {
   depends_on      = ["rancher_registration_token.compute"]
   count           = "${var.ec2_compute_count}"
-  ami             = "${lookup(var.ami_ids, var.os_type)}"
+  ami             = "${local.ostype_amis[var.os_type]}"
   instance_type   = "${var.compute_instance_type}"
   key_name        = "${var.ssh_key_name}"
 
